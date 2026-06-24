@@ -5,7 +5,7 @@
 
 /**
  *
- * @author nanda
+ * @author ASUS
  */
 public class HomePage extends javax.swing.JFrame {
     
@@ -16,6 +16,16 @@ public class HomePage extends javax.swing.JFrame {
      */
     public HomePage() {
         initComponents();
+
+        btnRENT.setContentAreaFilled(false);
+        btnRENT.setBorderPainted(false);
+        btnRENT.setFocusPainted(false);
+        btnRENT.setOpaque(false);
+        
+        btnRentPage.setContentAreaFilled(false);
+        btnRentPage.setBorderPainted(false);
+        btnRentPage.setFocusPainted(false);
+        btnRentPage.setOpaque(false);
     }
 
     /**
@@ -27,17 +37,50 @@ public class HomePage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnRENT = new javax.swing.JButton();
+        btnRentPage = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Home.jpg.jpeg"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        btnRENT.addActionListener(this::btnRENTActionPerformed);
+        getContentPane().add(btnRENT, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, 110, 30));
+
+        btnRentPage.addActionListener(this::btnRentPageActionPerformed);
+        getContentPane().add(btnRentPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 480, 70, 50));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HomePage.jpeg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRENTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRENTActionPerformed
+        // TODO add your handling code here:
+       System.out.println("Klik!");
+
+        try {
+            RentPage rent = new RentPage();
+            rent.setVisible(true);
+            this.dispose();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnRENTActionPerformed
+
+    private void btnRentPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRentPageActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Klik!");
+
+        try {
+            RentPage rent = new RentPage();
+            rent.setVisible(true);
+            this.dispose();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnRentPageActionPerformed
 
     /**
      * @param args the command line arguments
@@ -65,6 +108,8 @@ public class HomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRENT;
+    private javax.swing.JButton btnRentPage;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
