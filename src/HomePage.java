@@ -26,6 +26,11 @@ public class HomePage extends javax.swing.JFrame {
         btnRentPage.setBorderPainted(false);
         btnRentPage.setFocusPainted(false);
         btnRentPage.setOpaque(false);
+        
+        btnHistory.setContentAreaFilled(false);
+        btnHistory.setBorderPainted(false);
+        btnHistory.setFocusPainted(false);
+        btnHistory.setOpaque(false);
     }
 
     /**
@@ -39,6 +44,7 @@ public class HomePage extends javax.swing.JFrame {
 
         btnRENT = new javax.swing.JButton();
         btnRentPage = new javax.swing.JButton();
+        btnHistory = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,6 +55,9 @@ public class HomePage extends javax.swing.JFrame {
 
         btnRentPage.addActionListener(this::btnRentPageActionPerformed);
         getContentPane().add(btnRentPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 480, 70, 50));
+
+        btnHistory.addActionListener(this::btnHistoryActionPerformed);
+        getContentPane().add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 470, 90, 70));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HomePage.jpeg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -82,6 +91,13 @@ public class HomePage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRentPageActionPerformed
 
+    private void btnHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoryActionPerformed
+        // TODO add your handling code here:
+        System.out.println("History diklik");
+        new HistoryPage().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnHistoryActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -108,6 +124,7 @@ public class HomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHistory;
     private javax.swing.JButton btnRENT;
     private javax.swing.JButton btnRentPage;
     private javax.swing.JLabel jLabel1;

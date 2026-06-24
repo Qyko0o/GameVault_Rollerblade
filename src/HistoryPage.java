@@ -7,14 +7,14 @@
  *
  * @author ASUS
  */
-public class RentPage extends javax.swing.JFrame {
+public class HistoryPage extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RentPage.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(HistoryPage.class.getName());
 
     /**
-     * Creates new form RentPage
+     * Creates new form HistoryPage
      */
-    public RentPage() {
+    public HistoryPage() {
         initComponents();
         
         btnHome.setContentAreaFilled(false);
@@ -22,10 +22,10 @@ public class RentPage extends javax.swing.JFrame {
         btnHome.setFocusPainted(false);
         btnHome.setOpaque(false);
         
-        btnHistory.setContentAreaFilled(false);
-        btnHistory.setBorderPainted(false);
-        btnHistory.setFocusPainted(false);
-        btnHistory.setOpaque(false);
+        btnRentPage.setContentAreaFilled(false);
+        btnRentPage.setBorderPainted(false);
+        btnRentPage.setFocusPainted(false);
+        btnRentPage.setOpaque(false);
     }
 
     /**
@@ -38,8 +38,7 @@ public class RentPage extends javax.swing.JFrame {
     private void initComponents() {
 
         btnHome = new javax.swing.JButton();
-        btnHistory = new javax.swing.JButton();
-        txtNama = new javax.swing.JTextField();
+        btnRentPage = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -48,24 +47,14 @@ public class RentPage extends javax.swing.JFrame {
         btnHome.addActionListener(this::btnHomeActionPerformed);
         getContentPane().add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 470, 80, 70));
 
-        btnHistory.addActionListener(this::btnHistoryActionPerformed);
-        getContentPane().add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 470, -1, 70));
+        btnRentPage.addActionListener(this::btnRentPageActionPerformed);
+        getContentPane().add(btnRentPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 470, -1, 70));
 
-        txtNama.addActionListener(this::txtNamaActionPerformed);
-        getContentPane().add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 160, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RentPage.jpeg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HistoryPage.jpeg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoryActionPerformed
-        // TODO add your handling code here:
-        System.out.println("History diklik");
-        new HistoryPage().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnHistoryActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
@@ -74,9 +63,12 @@ public class RentPage extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnHomeActionPerformed
 
-    private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
+    private void btnRentPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRentPageActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNamaActionPerformed
+        System.out.println("Rent diklik");
+        new RentPage().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRentPageActionPerformed
 
     /**
      * @param args the command line arguments
@@ -100,13 +92,12 @@ public class RentPage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new RentPage().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new HistoryPage().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnHistory;
     private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnRentPage;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField txtNama;
     // End of variables declaration//GEN-END:variables
 }
