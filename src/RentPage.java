@@ -40,6 +40,7 @@ public class RentPage extends javax.swing.JFrame {
         btnHome = new javax.swing.JButton();
         btnHistory = new javax.swing.JButton();
         txtNama = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,6 +54,7 @@ public class RentPage extends javax.swing.JFrame {
 
         txtNama.addActionListener(this::txtNamaActionPerformed);
         getContentPane().add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 160, -1));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 160, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RentPage.jpeg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -106,6 +108,7 @@ public class RentPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHistory;
     private javax.swing.JButton btnHome;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtNama;
     // End of variables declaration//GEN-END:variables
