@@ -27,6 +27,10 @@ public class RentPage extends javax.swing.JFrame {
         btnPesan.setFocusPainted(false);
         btnPesan.setOpaque(false);
         
+        btnHistory.setContentAreaFilled(false);
+        btnHistory.setBorderPainted(false);
+        btnHistory.setFocusPainted(false);
+        btnHistory.setOpaque(false);
     }
      
 
@@ -45,8 +49,10 @@ public class RentPage extends javax.swing.JFrame {
         txtNama1 = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtNoTelepon = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        txtJamSewa = new javax.swing.JTextField();
         btnPesan = new javax.swing.JButton();
+        cmbDurasi = new javax.swing.JComboBox<>();
+        txtTanggal = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,12 +73,17 @@ public class RentPage extends javax.swing.JFrame {
         txtEmail.addActionListener(this::txtEmailActionPerformed);
         getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 160, -1));
         getContentPane().add(txtNoTelepon, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 160, -1));
-
-        jTextField1.setText("jTextField1");
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, -1, -1));
+        getContentPane().add(txtJamSewa, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 160, -1));
 
         btnPesan.addActionListener(this::btnPesanActionPerformed);
-        getContentPane().add(btnPesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 370, 130, 30));
+        getContentPane().add(btnPesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 410, 130, 30));
+
+        cmbDurasi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 Jam", "2 Jam", "3 Jam", "4 Jam", "5 Jam", "6 Jam", "7 Jam", "8 Jam", "9 Jam", "10 Jam" }));
+        cmbDurasi.addActionListener(this::cmbDurasiActionPerformed);
+        getContentPane().add(cmbDurasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 160, -1));
+
+        txtTanggal.addActionListener(this::txtTanggalActionPerformed);
+        getContentPane().add(txtTanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 160, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RentPage.jpeg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -108,10 +119,33 @@ public class RentPage extends javax.swing.JFrame {
 
     private void btnPesanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesanActionPerformed
         // TODO add your handling code here:
-        System.out.println("Pesan diklik");
-        new DetailPesananPage().setVisible(true);
+        
+        String nama = txtNama.getText();
+        String email = txtEmail.getText();
+        String noTelepon = txtNoTelepon.getText();
+        String tanggal = txtTanggal.getText();
+
+        String jam = cmbJam.getSelectedItem().toString();
+        String durasi = cmbDurasi.getSelectedItem().toString();
+
+        new DetailPesananPage(
+                nama,
+                email,
+                noTelepon,
+                tanggal,
+                jam,
+                durasi
+        ).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPesanActionPerformed
+
+    private void cmbDurasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDurasiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbDurasiActionPerformed
+
+    private void txtTanggalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTanggalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTanggalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,11 +176,13 @@ public class RentPage extends javax.swing.JFrame {
     private javax.swing.JButton btnHistory;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnPesan;
+    private javax.swing.JComboBox<String> cmbDurasi;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtJamSewa;
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtNama1;
     private javax.swing.JTextField txtNoTelepon;
+    private javax.swing.JTextField txtTanggal;
     // End of variables declaration//GEN-END:variables
 }

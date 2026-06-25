@@ -8,7 +8,12 @@
  * @author ASUS
  */
 public class DetailPesananPage extends javax.swing.JFrame {
-    
+    private String nama;
+    private String email;
+    private String noTelp;
+    private String tanggal;
+    private String jam;
+    private String durasi;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DetailPesananPage.class.getName());
 
     /**
@@ -55,6 +60,8 @@ public class DetailPesananPage extends javax.swing.JFrame {
 
         btnHistory.addActionListener(this::btnHistoryActionPerformed);
         getContentPane().add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 470, 90, 70));
+
+        btnKonfrimasi.addActionListener(this::btnKonfrimasiActionPerformed);
         getContentPane().add(btnKonfrimasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 377, 100, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DetailPesananPage.jpeg"))); // NOI18N
@@ -76,6 +83,12 @@ public class DetailPesananPage extends javax.swing.JFrame {
         new HistoryPage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnHistoryActionPerformed
+
+    private void btnKonfrimasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKonfrimasiActionPerformed
+        System.out.println("Bayar diklik");
+        new BayarPage().setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnKonfrimasiActionPerformed
 
     /**
      * @param args the command line arguments

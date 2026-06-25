@@ -16,6 +16,16 @@ public class BayarPage extends javax.swing.JFrame {
      */
     public BayarPage() {
         initComponents();
+        
+        btnHistory.setContentAreaFilled(false);
+        btnHistory.setBorderPainted(false);
+        btnHistory.setFocusPainted(false);
+        btnHistory.setOpaque(false);
+        
+        btnHome.setContentAreaFilled(false);
+        btnHome.setBorderPainted(false);
+        btnHome.setFocusPainted(false);
+        btnHome.setOpaque(false);
     }
 
     /**
@@ -27,16 +37,41 @@ public class BayarPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnHome = new javax.swing.JButton();
+        btnHistory = new javax.swing.JButton();
+        btnKonfirmasi = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnHome.addActionListener(this::btnHomeActionPerformed);
+        getContentPane().add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 470, 80, 70));
+
+        btnHistory.addActionListener(this::btnHistoryActionPerformed);
+        getContentPane().add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(622, 470, 80, 70));
+        getContentPane().add(btnKonfirmasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 100, 20));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BayarPage.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoryActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Bayar diklik");
+        new HistoryPage().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnHistoryActionPerformed
+
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Bayar diklik");
+        new HomePage().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnHomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -64,6 +99,9 @@ public class BayarPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHistory;
+    private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnKonfirmasi;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
