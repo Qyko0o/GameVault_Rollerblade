@@ -22,11 +22,13 @@ public class RentPage extends javax.swing.JFrame {
         btnHome.setFocusPainted(false);
         btnHome.setOpaque(false);
         
-        btnHistory.setContentAreaFilled(false);
-        btnHistory.setBorderPainted(false);
-        btnHistory.setFocusPainted(false);
-        btnHistory.setOpaque(false);
+        btnPesan.setContentAreaFilled(false);
+        btnPesan.setBorderPainted(false);
+        btnPesan.setFocusPainted(false);
+        btnPesan.setOpaque(false);
+        
     }
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,6 +42,11 @@ public class RentPage extends javax.swing.JFrame {
         btnHome = new javax.swing.JButton();
         btnHistory = new javax.swing.JButton();
         txtNama = new javax.swing.JTextField();
+        txtNama1 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtNoTelepon = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
+        btnPesan = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,10 +56,23 @@ public class RentPage extends javax.swing.JFrame {
         getContentPane().add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 470, 80, 70));
 
         btnHistory.addActionListener(this::btnHistoryActionPerformed);
-        getContentPane().add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 470, -1, 70));
+        getContentPane().add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 470, 90, 70));
 
         txtNama.addActionListener(this::txtNamaActionPerformed);
         getContentPane().add(txtNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 160, -1));
+
+        txtNama1.addActionListener(this::txtNama1ActionPerformed);
+        getContentPane().add(txtNama1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 160, -1));
+
+        txtEmail.addActionListener(this::txtEmailActionPerformed);
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 160, -1));
+        getContentPane().add(txtNoTelepon, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 160, -1));
+
+        jTextField1.setText("jTextField1");
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, -1, -1));
+
+        btnPesan.addActionListener(this::btnPesanActionPerformed);
+        getContentPane().add(btnPesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 370, 130, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RentPage.jpeg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -77,6 +97,21 @@ public class RentPage extends javax.swing.JFrame {
     private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNamaActionPerformed
+
+    private void txtNama1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNama1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNama1ActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void btnPesanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesanActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Pesan diklik");
+        new DetailPesananPage().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnPesanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -106,7 +141,12 @@ public class RentPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHistory;
     private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnPesan;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNama;
+    private javax.swing.JTextField txtNama1;
+    private javax.swing.JTextField txtNoTelepon;
     // End of variables declaration//GEN-END:variables
 }
