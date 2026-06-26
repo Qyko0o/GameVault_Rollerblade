@@ -76,7 +76,7 @@ public class RentPage extends javax.swing.JFrame {
         getContentPane().add(txtJamSewa, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 160, -1));
 
         btnPesan.addActionListener(this::btnPesanActionPerformed);
-        getContentPane().add(btnPesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 410, 130, 30));
+        getContentPane().add(btnPesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 370, 130, 30));
 
         cmbDurasi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 Jam", "2 Jam", "3 Jam", "4 Jam", "5 Jam", "6 Jam", "7 Jam", "8 Jam", "9 Jam", "10 Jam" }));
         cmbDurasi.addActionListener(this::cmbDurasiActionPerformed);
@@ -119,23 +119,23 @@ public class RentPage extends javax.swing.JFrame {
 
     private void btnPesanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesanActionPerformed
         // TODO add your handling code here:
-        
         String nama = txtNama.getText();
         String email = txtEmail.getText();
         String noTelepon = txtNoTelepon.getText();
         String tanggal = txtTanggal.getText();
-
-        String jam = cmbJam.getSelectedItem().toString();
+        String jamSewa = txtJamSewa.getText();
         String durasi = cmbDurasi.getSelectedItem().toString();
 
-        new DetailPesananPage(
+        DetailPesananPage detail = new DetailPesananPage(
                 nama,
                 email,
                 noTelepon,
                 tanggal,
-                jam,
+                jamSewa,
                 durasi
-        ).setVisible(true);
+        );
+
+        detail.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPesanActionPerformed
 

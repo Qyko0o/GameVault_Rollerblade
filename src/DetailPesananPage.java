@@ -8,12 +8,6 @@
  * @author ASUS
  */
 public class DetailPesananPage extends javax.swing.JFrame {
-    private String nama;
-    private String email;
-    private String noTelp;
-    private String tanggal;
-    private String jam;
-    private String durasi;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DetailPesananPage.class.getName());
 
     /**
@@ -37,6 +31,19 @@ public class DetailPesananPage extends javax.swing.JFrame {
         btnKonfrimasi.setFocusPainted(false);
         btnKonfrimasi.setOpaque(false);
     }
+    
+    public DetailPesananPage(String nama, String email,
+                         String noTelepon, String tanggal,
+                         String jamSewa, String durasi) {
+        initComponents();
+
+        lblNama.setText(nama);
+        lblEmail.setText(email);
+        lblNoTelepon.setText(noTelepon);
+        lblTanggal.setText(tanggal);
+        lblJamSewa.setText(jamSewa);
+        lblDurasi.setText(durasi);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,6 +57,12 @@ public class DetailPesananPage extends javax.swing.JFrame {
         btnHome = new javax.swing.JButton();
         btnHistory = new javax.swing.JButton();
         btnKonfrimasi = new javax.swing.JButton();
+        lblNama = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        lblNoTelepon = new javax.swing.JLabel();
+        lblTanggal = new javax.swing.JLabel();
+        lblJamSewa = new javax.swing.JLabel();
+        lblDurasi = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,6 +76,36 @@ public class DetailPesananPage extends javax.swing.JFrame {
 
         btnKonfrimasi.addActionListener(this::btnKonfrimasiActionPerformed);
         getContentPane().add(btnKonfrimasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 377, 100, 30));
+
+        lblNama.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNama.setForeground(new java.awt.Color(255, 255, 255));
+        lblNama.setText("Nama");
+        getContentPane().add(lblNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, -1, 30));
+
+        lblEmail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(255, 255, 255));
+        lblEmail.setText("Email");
+        getContentPane().add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 160, -1, -1));
+
+        lblNoTelepon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNoTelepon.setForeground(new java.awt.Color(255, 255, 255));
+        lblNoTelepon.setText("No Telp");
+        getContentPane().add(lblNoTelepon, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, -1, 60));
+
+        lblTanggal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTanggal.setForeground(new java.awt.Color(255, 255, 255));
+        lblTanggal.setText("Tanggal");
+        getContentPane().add(lblTanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, -1, 30));
+
+        lblJamSewa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblJamSewa.setForeground(new java.awt.Color(255, 255, 255));
+        lblJamSewa.setText("Jam Sewa");
+        getContentPane().add(lblJamSewa, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, -1, 60));
+
+        lblDurasi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDurasi.setForeground(new java.awt.Color(255, 255, 255));
+        lblDurasi.setText("jLabel2");
+        getContentPane().add(lblDurasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 310, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DetailPesananPage.jpeg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 540));
@@ -120,5 +163,11 @@ public class DetailPesananPage extends javax.swing.JFrame {
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnKonfrimasi;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblDurasi;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblJamSewa;
+    private javax.swing.JLabel lblNama;
+    private javax.swing.JLabel lblNoTelepon;
+    private javax.swing.JLabel lblTanggal;
     // End of variables declaration//GEN-END:variables
 }
