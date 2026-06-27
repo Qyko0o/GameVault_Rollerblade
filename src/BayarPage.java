@@ -175,8 +175,9 @@ public class BayarPage extends javax.swing.JFrame {
                 "INSERT INTO booking "
                 + "(id_penyewa,id_ruangan,"
                 + "tanggal_sewa,jam_mulai,"
-                + "durasi,total_bayar,status_booking)"
-                + " VALUES(?,?,?,?,?,?,?)";
+                + "jam_selesai,durasi,"
+                + "total_bayar,status_booking)"
+                + " VALUES(?,?,?,?,?,?,?,?)";
 
         PreparedStatement pstBooking =
                 conn.prepareStatement(sqlBooking,
@@ -190,8 +191,9 @@ LocalDate tgl =
 
 String tanggalDB = tgl.toString();
 
-LocalTime jam =
-        LocalTime.parse(jamSewa);
+LocalTime jam = LocalTime.parse(jamSewa);
+LocalTime jamSelesai = jam.plusHours(lama);
+String jamSelesaiDB = jamSelesai.toString();
 
 String jamDB = jam.toString();
 
@@ -199,10 +201,10 @@ String jamDB = jam.toString();
         pstBooking.setInt(2, idRuangan);
         pstBooking.setString(3, tanggalDB);
         pstBooking.setString(4, jamDB);
-        pstBooking.setInt(5, lama);
-        pstBooking.setInt(6, totalBayar);
-        pstBooking.setString(7,
-                "Menunggu Konfirmasi");
+        pstBooking.setString(5, jamSelesaiDB);
+        pstBooking.setInt(6, lama);
+        pstBooking.setInt(7, totalBayar);
+        pstBooking.setString(8, "Menunggu Konfirmasi");
 
         pstBooking.executeUpdate();
 

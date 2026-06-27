@@ -2,7 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author nanda
@@ -16,7 +20,58 @@ public class AdminPage extends javax.swing.JFrame {
      */
     public AdminPage() {
         initComponents();
+        
+        btnHome.setContentAreaFilled(false);
+        btnHome.setBorderPainted(false);
+        btnHome.setFocusPainted(false);
+        btnHome.setOpaque(false);
+        
+        tampilData();
     }
+    
+    private void tampilData() {
+    DefaultTableModel model = new DefaultTableModel();
+
+    model.addColumn("ID Booking");
+    model.addColumn("Nama");
+    model.addColumn("Ruangan");
+    model.addColumn("Tanggal");
+    model.addColumn("Jam");
+    model.addColumn("Status");
+
+    try {
+        Connection conn = Koneksi.getConnection();
+
+        String sql =
+            "SELECT b.id_booking, p.nama, r.nama_ruangan, " +
+            "b.tanggal_sewa, b.jam_mulai, b.status_booking " +
+            "FROM booking b " +
+            "JOIN penyewa p ON b.id_penyewa = p.id_penyewa " +
+            "JOIN ruangan r ON b.id_ruangan = r.id_ruangan";
+
+        PreparedStatement pst =
+                conn.prepareStatement(sql);
+
+        ResultSet rs = pst.executeQuery();
+
+        while (rs.next()) {
+            model.addRow(new Object[]{
+                rs.getInt("id_booking"),
+                rs.getString("nama"),
+                rs.getString("nama_ruangan"),
+                rs.getString("tanggal_sewa"),
+                rs.getString("jam_mulai"),
+                rs.getString("status_booking")
+            });
+        }
+
+        tblAdmin.setModel(model);
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this,
+                e.getMessage());
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,11 +82,171 @@ public class AdminPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblAdmin = new javax.swing.JTable();
+        btnAccept = new javax.swing.JButton();
+        btnDecline = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        btnHome = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tblAdmin.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblAdmin);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 790, 330));
+
+        btnAccept.setText("Accept");
+        btnAccept.addActionListener(this::btnAcceptActionPerformed);
+        getContentPane().add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 240, -1, -1));
+
+        btnDecline.setText("Decline");
+        btnDecline.addActionListener(this::btnDeclineActionPerformed);
+        getContentPane().add(btnDecline, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 290, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Hi, Admin!");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 62, -1, 40));
+
+        btnHome.addActionListener(this::btnHomeActionPerformed);
+        getContentPane().add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 470, 80, 70));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AdminPage.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
+        // TODO add your handling code here:
+        int baris = tblAdmin.getSelectedRow();
+
+        if (baris == -1) {
+            JOptionPane.showMessageDialog(this,
+                    "Pilih data terlebih dahulu!");
+            return;
+        }
+
+        int idBooking = Integer.parseInt(
+                tblAdmin.getValueAt(baris, 0).toString());
+
+        try {
+            Connection conn =
+                    Koneksi.getConnection();
+
+            String sql =
+                    "UPDATE booking " +
+                    "SET status_booking='Disetujui' " +
+                    "WHERE id_booking=?";
+
+            PreparedStatement pst =
+                    conn.prepareStatement(sql);
+
+            pst.setInt(1, idBooking);
+            pst.executeUpdate();
+            String sqlBayar =
+                    "UPDATE pembayaran "
+                    + "SET status_pembayaran='Lunas' "
+                    + "WHERE id_booking=?";
+
+            PreparedStatement pstBayar =
+                    conn.prepareStatement(sqlBayar);
+
+            pstBayar.setInt(1, idBooking);
+            pstBayar.executeUpdate();
+            
+            String sqlRoom =
+        "UPDATE ruangan r " +
+        "JOIN booking b " +
+        "ON r.id_ruangan = b.id_ruangan " +
+        "SET r.status='Disewa' " +
+        "WHERE b.id_booking=?";
+
+PreparedStatement pstRoom =
+        conn.prepareStatement(sqlRoom);
+
+pstRoom.setInt(1, idBooking);
+pstRoom.executeUpdate();
+
+            JOptionPane.showMessageDialog(this,
+                    "Pesanan disetujui!");
+
+            tampilData();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    e.getMessage());
+        }
+    }//GEN-LAST:event_btnAcceptActionPerformed
+
+    private void btnDeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeclineActionPerformed
+        // TODO add your handling code here:
+        int baris = tblAdmin.getSelectedRow();
+
+        if (baris == -1) {
+            JOptionPane.showMessageDialog(this,
+                    "Pilih data terlebih dahulu!");
+            return;
+        }
+
+        int idBooking = Integer.parseInt(
+                tblAdmin.getValueAt(baris, 0).toString());
+
+        try {
+            Connection conn =
+                    Koneksi.getConnection();
+
+            String sql =
+                    "UPDATE booking " +
+                    "SET status_booking='Ditolak' " +
+                    "WHERE id_booking=?";
+
+            PreparedStatement pst =
+                    conn.prepareStatement(sql);
+
+            pst.setInt(1, idBooking);
+            pst.executeUpdate();
+            String sqlBayar =
+        "UPDATE pembayaran "
+        + "SET status_pembayaran='Ditolak' "
+        + "WHERE id_booking=?";
+
+PreparedStatement pstBayar =
+        conn.prepareStatement(sqlBayar);
+
+pstBayar.setInt(1, idBooking);
+pstBayar.executeUpdate();
+
+            JOptionPane.showMessageDialog(this,
+                    "Pesanan ditolak!");
+
+            tampilData();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    e.getMessage());
+        }
+    }//GEN-LAST:event_btnDeclineActionPerformed
+
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Home diklik");
+        new HomePage().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnHomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -59,5 +274,12 @@ public class AdminPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAccept;
+    private javax.swing.JButton btnDecline;
+    private javax.swing.JButton btnHome;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblAdmin;
     // End of variables declaration//GEN-END:variables
 }
