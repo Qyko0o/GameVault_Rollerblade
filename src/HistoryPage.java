@@ -2,7 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author ASUS
@@ -26,8 +29,51 @@ public class HistoryPage extends javax.swing.JFrame {
         btnRentPage.setBorderPainted(false);
         btnRentPage.setFocusPainted(false);
         btnRentPage.setOpaque(false);
+        
+        tampilData();
     }
 
+    private void tampilData() {
+        DefaultTableModel model = new DefaultTableModel();
+
+        model.addColumn("Nama");
+        model.addColumn("Ruangan");
+        model.addColumn("Tanggal");
+        model.addColumn("Jam");
+        model.addColumn("Status");
+
+        try {
+            Connection conn = Koneksi.getConnection();
+
+            String sql =
+                    "SELECT p.nama, r.nama_ruangan, " +
+                    "b.tanggal_sewa, b.jam_mulai, " +
+                    "b.status_booking " +
+                    "FROM booking b " +
+                    "JOIN penyewa p ON b.id_penyewa = p.id_penyewa " +
+                    "JOIN ruangan r ON b.id_ruangan = r.id_ruangan";
+
+            PreparedStatement pst =
+                    conn.prepareStatement(sql);
+
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                model.addRow(new Object[]{
+                    rs.getString("nama"),
+                    rs.getString("nama_ruangan"),
+                    rs.getString("tanggal_sewa"),
+                    rs.getString("jam_mulai"),
+                    rs.getString("status_booking")
+                });
+            }
+
+            tblHistory.setModel(model);
+
+        } catch (Exception e) {
+            System.out.println("Error : " + e.getMessage());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,6 +85,8 @@ public class HistoryPage extends javax.swing.JFrame {
 
         btnHome = new javax.swing.JButton();
         btnRentPage = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblHistory = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,6 +97,23 @@ public class HistoryPage extends javax.swing.JFrame {
 
         btnRentPage.addActionListener(this::btnRentPageActionPerformed);
         getContentPane().add(btnRentPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 470, -1, 70));
+
+        tblHistory.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tblHistory.setForeground(new java.awt.Color(204, 255, 153));
+        tblHistory.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblHistory);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 820, 250));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HistoryPage.jpeg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -99,5 +164,7 @@ public class HistoryPage extends javax.swing.JFrame {
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnRentPage;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblHistory;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,7 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 /**
  *
  * @author ASUS
@@ -14,6 +20,14 @@ public class BayarPage extends javax.swing.JFrame {
     /**
      * Creates new form BayarPage
      */
+    private String nama;
+    private String email;
+    private String noTelepon;
+    private String tanggal;
+    private String jamSewa;
+    private String durasi;
+    private String ruangan;
+
     public BayarPage() {
         initComponents();
         
@@ -28,6 +42,32 @@ public class BayarPage extends javax.swing.JFrame {
         btnHome.setOpaque(false);
     }
 
+    public BayarPage(String nama, String email,
+                 String noTelepon, String tanggal,
+                 String jamSewa, String durasi,
+                 String ruangan) {
+        initComponents();
+
+        this.nama = nama;
+        this.email = email;
+        this.noTelepon = noTelepon;
+        this.tanggal = tanggal;
+        this.jamSewa = jamSewa;
+        this.durasi = durasi;
+        this.ruangan = ruangan;
+
+        btnHistory.setContentAreaFilled(false);
+        btnHistory.setBorderPainted(false);
+        btnHistory.setFocusPainted(false);
+        btnHistory.setOpaque(false);
+
+        btnHome.setContentAreaFilled(false);
+        btnHome.setBorderPainted(false);
+        btnHome.setFocusPainted(false);
+        btnHome.setOpaque(false);
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,8 +79,8 @@ public class BayarPage extends javax.swing.JFrame {
 
         btnHome = new javax.swing.JButton();
         btnHistory = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         btnKonfirmasi = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -51,12 +91,12 @@ public class BayarPage extends javax.swing.JFrame {
         btnHistory.addActionListener(this::btnHistoryActionPerformed);
         getContentPane().add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(622, 470, 80, 70));
 
+        btnKonfirmasi.addActionListener(this::btnKonfirmasiActionPerformed);
+        getContentPane().add(btnKonfirmasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 100, 20));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BayarPage.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, -1));
-
-        btnKonfirmasi.addActionListener(this::btnKonfirmasiActionPerformed);
-        getContentPane().add(btnKonfirmasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 100, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -77,10 +117,133 @@ public class BayarPage extends javax.swing.JFrame {
 
     private void btnKonfirmasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKonfirmasiActionPerformed
         // TODO add your handling code here:
-        javax.swing.JOptionPane.showMessageDialog(this, 
-            "Pesanan akan segera diproses!", 
-            "Informasi", 
-            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        try {
+        Connection conn = Koneksi.getConnection();
+
+        // =========================
+        // 1. Simpan ke tabel penyewa
+        // =========================
+        String sqlPenyewa =
+                "INSERT INTO penyewa(nama,email,no_telp) VALUES(?,?,?)";
+
+        PreparedStatement pstPenyewa =
+                conn.prepareStatement(sqlPenyewa,
+                        PreparedStatement.RETURN_GENERATED_KEYS);
+
+        pstPenyewa.setString(1, nama);
+        pstPenyewa.setString(2, email);
+        pstPenyewa.setString(3, noTelepon);
+
+        pstPenyewa.executeUpdate();
+
+        ResultSet rsPenyewa = pstPenyewa.getGeneratedKeys();
+        int idPenyewa = 0;
+
+        if (rsPenyewa.next()) {
+            idPenyewa = rsPenyewa.getInt(1);
+        }
+
+        // =========================
+        // 2. Cari id_ruangan
+        // =========================
+        String sqlRuangan =
+                "SELECT id_ruangan, harga_per_jam "
+                + "FROM ruangan WHERE nama_ruangan=?";
+
+        PreparedStatement pstRuangan =
+                conn.prepareStatement(sqlRuangan);
+
+        pstRuangan.setString(1, ruangan);
+
+        ResultSet rsRuangan = pstRuangan.executeQuery();
+
+        int idRuangan = 0;
+        int hargaPerJam = 0;
+
+        if (rsRuangan.next()) {
+            idRuangan = rsRuangan.getInt("id_ruangan");
+            hargaPerJam = rsRuangan.getInt("harga_per_jam");
+        }
+        
+        int lama = Integer.parseInt(
+            durasi.replace(" Jam", "")
+        );
+
+        int totalBayar = lama * hargaPerJam;
+        
+                String sqlBooking =
+                "INSERT INTO booking "
+                + "(id_penyewa,id_ruangan,"
+                + "tanggal_sewa,jam_mulai,"
+                + "durasi,total_bayar,status_booking)"
+                + " VALUES(?,?,?,?,?,?,?)";
+
+        PreparedStatement pstBooking =
+                conn.prepareStatement(sqlBooking,
+                        PreparedStatement.RETURN_GENERATED_KEYS);
+
+        DateTimeFormatter inputTanggal =
+        DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+LocalDate tgl =
+        LocalDate.parse(tanggal, inputTanggal);
+
+String tanggalDB = tgl.toString();
+
+LocalTime jam =
+        LocalTime.parse(jamSewa);
+
+String jamDB = jam.toString();
+
+        pstBooking.setInt(1, idPenyewa);
+        pstBooking.setInt(2, idRuangan);
+        pstBooking.setString(3, tanggalDB);
+        pstBooking.setString(4, jamDB);
+        pstBooking.setInt(5, lama);
+        pstBooking.setInt(6, totalBayar);
+        pstBooking.setString(7,
+                "Menunggu Konfirmasi");
+
+        pstBooking.executeUpdate();
+
+        ResultSet rsBooking =
+                pstBooking.getGeneratedKeys();
+
+        int idBooking = 0;
+
+        if (rsBooking.next()) {
+            idBooking = rsBooking.getInt(1);
+        }
+        
+                String sqlBayar =
+                "INSERT INTO pembayaran "
+                + "(id_booking,"
+                + "metode_pembayaran,"
+                + "tanggal_bayar,"
+                + "status_pembayaran)"
+                + " VALUES(?,?,NOW(),?)";
+
+        PreparedStatement pstBayar =
+                conn.prepareStatement(sqlBayar);
+
+        pstBayar.setInt(1, idBooking);
+        pstBayar.setString(2, "Transfer");
+        pstBayar.setString(3, "Menunggu");
+
+        pstBayar.executeUpdate();
+        
+                JOptionPane.showMessageDialog(this,
+                "Pesanan berhasil dikirim!\n"
+                + "Silakan tunggu konfirmasi admin.");
+
+        new HistoryPage().setVisible(true);
+        this.dispose();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this,
+                "Gagal menyimpan data : "
+                        + e.getMessage());
+    }
     }//GEN-LAST:event_btnKonfirmasiActionPerformed
 
     /**

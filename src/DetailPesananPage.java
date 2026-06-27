@@ -13,6 +13,14 @@ public class DetailPesananPage extends javax.swing.JFrame {
     /**
      * Creates new form DetailPesananPage
      */
+    private String nama;
+    private String email;
+    private String noTelepon;
+    private String tanggal;
+    private String jamSewa;
+    private String durasi;
+    private String ruangan;
+    
     public DetailPesananPage() {
         initComponents();
         
@@ -34,8 +42,17 @@ public class DetailPesananPage extends javax.swing.JFrame {
     
     public DetailPesananPage(String nama, String email,
                          String noTelepon, String tanggal,
-                         String jamSewa, String durasi, String ruanganDipilih) {
+                         String jamSewa, String durasi,
+                         String ruanganDipilih) {
         initComponents();
+
+        this.nama = nama;
+        this.email = email;
+        this.noTelepon = noTelepon;
+        this.tanggal = tanggal;
+        this.jamSewa = jamSewa;
+        this.durasi = durasi;
+        this.ruangan = ruanganDipilih;
 
         lblNama.setText(nama);
         lblEmail.setText(email);
@@ -62,10 +79,10 @@ public class DetailPesananPage extends javax.swing.JFrame {
         lblDurasi = new javax.swing.JLabel();
         lblTanggal = new javax.swing.JLabel();
         lblRuangan = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         btnHistory = new javax.swing.JButton();
         btnHome = new javax.swing.JButton();
         btnKonfrimasi = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -108,9 +125,6 @@ public class DetailPesananPage extends javax.swing.JFrame {
         lblRuangan.setText("jLabel5");
         getContentPane().add(lblRuangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DetailPesananPage.jpeg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 540));
-
         btnHistory.addActionListener(this::btnHistoryActionPerformed);
         getContentPane().add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 470, 90, 70));
 
@@ -119,6 +133,9 @@ public class DetailPesananPage extends javax.swing.JFrame {
 
         btnKonfrimasi.addActionListener(this::btnKonfrimasiActionPerformed);
         getContentPane().add(btnKonfrimasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, 100, 30));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DetailPesananPage.jpeg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 540));
 
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, -1));
@@ -146,7 +163,17 @@ public class DetailPesananPage extends javax.swing.JFrame {
 
     private void btnKonfrimasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKonfrimasiActionPerformed
         System.out.println("Bayar diklik");
-        new BayarPage().setVisible(true);
+        new BayarPage(
+            nama,
+            email,
+            noTelepon,
+            tanggal,
+            jamSewa,
+            durasi,
+            ruangan
+        ).setVisible(true);
+
+    this.dispose();
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnKonfrimasiActionPerformed
 
