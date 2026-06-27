@@ -123,7 +123,7 @@ public class DetailPesananPage extends javax.swing.JFrame {
         lblRuangan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblRuangan.setForeground(new java.awt.Color(255, 255, 255));
         lblRuangan.setText("jLabel5");
-        getContentPane().add(lblRuangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, 30));
+        getContentPane().add(lblRuangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, -1, 30));
 
         btnHistory.addActionListener(this::btnHistoryActionPerformed);
         getContentPane().add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 470, 90, 70));
@@ -150,18 +150,19 @@ public class DetailPesananPage extends javax.swing.JFrame {
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
         System.out.println("Home diklik");
-        new HomePage().setVisible(true);
+        new HomePage().setVisible(false);
         this.dispose();
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoryActionPerformed
         // TODO add your handling code here:
         System.out.println("History diklik");
-        new HistoryPage().setVisible(true);
+        new HistoryPage().setVisible(false);
         this.dispose();
     }//GEN-LAST:event_btnHistoryActionPerformed
 
     private void btnKonfrimasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKonfrimasiActionPerformed
+        // TODO add your handling code here:
         System.out.println("Bayar diklik");
         new BayarPage(
             nama,
@@ -171,10 +172,9 @@ public class DetailPesananPage extends javax.swing.JFrame {
             jamSewa,
             durasi,
             ruangan
-        ).setVisible(true);
+        ).setVisible(false);
 
     this.dispose();
-        this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnKonfrimasiActionPerformed
 
     /**

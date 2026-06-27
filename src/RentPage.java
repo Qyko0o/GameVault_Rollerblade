@@ -181,6 +181,8 @@ public class RentPage extends javax.swing.JFrame {
 
         txtNoTelepon.addActionListener(this::txtNoTeleponActionPerformed);
         getContentPane().add(txtNoTelepon, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 160, -1));
+
+        txtJamSewa.setText("00:00");
         getContentPane().add(txtJamSewa, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 160, -1));
 
         btnPesan.addActionListener(this::btnPesanActionPerformed);
@@ -190,38 +192,56 @@ public class RentPage extends javax.swing.JFrame {
         cmbDurasi.addActionListener(this::cmbDurasiActionPerformed);
         getContentPane().add(cmbDurasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 160, -1));
 
+        btnRoom1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRoom1.setForeground(new java.awt.Color(51, 102, 255));
         btnRoom1.setText("Room 1");
         btnRoom1.addActionListener(this::btnRoom1ActionPerformed);
-        getContentPane().add(btnRoom1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 100, 50));
+        getContentPane().add(btnRoom1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 100, 60));
 
+        btnRoom2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRoom2.setForeground(new java.awt.Color(0, 102, 255));
         btnRoom2.setText("Room 2");
         btnRoom2.addActionListener(this::btnRoom2ActionPerformed);
-        getContentPane().add(btnRoom2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, 90, 50));
+        getContentPane().add(btnRoom2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 140, 90, 60));
 
+        btnRoom3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRoom3.setForeground(new java.awt.Color(0, 102, 255));
         btnRoom3.setText("Room 3");
         btnRoom3.addActionListener(this::btnRoom3ActionPerformed);
-        getContentPane().add(btnRoom3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 150, 100, 50));
+        getContentPane().add(btnRoom3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 140, 100, 60));
 
+        btnRoom4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRoom4.setForeground(new java.awt.Color(0, 102, 255));
         btnRoom4.setText("Room 4");
         btnRoom4.addActionListener(this::btnRoom4ActionPerformed);
         getContentPane().add(btnRoom4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 100, 50));
 
+        btnRoom5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRoom5.setForeground(new java.awt.Color(0, 102, 255));
         btnRoom5.setText("Room 5");
         btnRoom5.addActionListener(this::btnRoom5ActionPerformed);
         getContentPane().add(btnRoom5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 220, 110, 50));
 
+        btnRoom6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRoom6.setForeground(new java.awt.Color(0, 102, 255));
         btnRoom6.setText("Room 6");
         btnRoom6.addActionListener(this::btnRoom6ActionPerformed);
         getContentPane().add(btnRoom6, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 220, 100, 50));
 
+        btnRoom7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRoom7.setForeground(new java.awt.Color(0, 102, 255));
         btnRoom7.setText("Room 7");
         btnRoom7.addActionListener(this::btnRoom7ActionPerformed);
         getContentPane().add(btnRoom7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 290, 100, 60));
 
+        btnRoom8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRoom8.setForeground(new java.awt.Color(0, 102, 255));
         btnRoom8.setText("Room 8");
         btnRoom8.addActionListener(this::btnRoom8ActionPerformed);
         getContentPane().add(btnRoom8, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 290, 110, 60));
 
+        btnRoom9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRoom9.setForeground(new java.awt.Color(0, 102, 255));
         btnRoom9.setText("Room 9");
         btnRoom9.addActionListener(this::btnRoom9ActionPerformed);
         getContentPane().add(btnRoom9, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 290, 100, 60));
@@ -233,6 +253,9 @@ public class RentPage extends javax.swing.JFrame {
         getContentPane().add(lblStatus4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, -1, -1));
         getContentPane().add(lblStatus3, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 180, -1, -1));
         getContentPane().add(lblStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, -1, -1));
+
+        txtTanggal.setText("dd-mm-yyyy");
+        txtTanggal.addActionListener(this::txtTanggalActionPerformed);
         getContentPane().add(txtTanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 160, -1));
         getContentPane().add(lblStatus1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, -1, -1));
 
@@ -380,6 +403,10 @@ public class RentPage extends javax.swing.JFrame {
     private void txtNoTeleponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoTeleponActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNoTeleponActionPerformed
+
+    private void txtTanggalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTanggalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTanggalActionPerformed
                  
     /**
      * @param args the command line arguments

@@ -40,6 +40,11 @@ public class BayarPage extends javax.swing.JFrame {
         btnHome.setBorderPainted(false);
         btnHome.setFocusPainted(false);
         btnHome.setOpaque(false);
+        
+        btnKonfirmasi.setContentAreaFilled(false);
+        btnKonfirmasi.setBorderPainted(false);
+        btnKonfirmasi.setFocusPainted(false);
+        btnKonfirmasi.setOpaque(false);
     }
 
     public BayarPage(String nama, String email,
@@ -65,6 +70,11 @@ public class BayarPage extends javax.swing.JFrame {
         btnHome.setBorderPainted(false);
         btnHome.setFocusPainted(false);
         btnHome.setOpaque(false);
+        
+        btnKonfirmasi.setContentAreaFilled(false);
+        btnKonfirmasi.setBorderPainted(false);
+        btnKonfirmasi.setFocusPainted(false);
+        btnKonfirmasi.setOpaque(false);
     }
     
     
@@ -238,7 +248,7 @@ String jamDB = jam.toString();
                 "Pesanan berhasil dikirim!\n"
                 + "Silakan tunggu konfirmasi admin.");
 
-        new HistoryPage().setVisible(true);
+        new HistoryPage().setVisible(false);
         this.dispose();
 
     } catch (Exception e) {
@@ -246,6 +256,9 @@ String jamDB = jam.toString();
                 "Gagal menyimpan data : "
                         + e.getMessage());
     }
+        
+        System.out.println("Konfrimasi diklik");
+
     }//GEN-LAST:event_btnKonfirmasiActionPerformed
 
     /**
