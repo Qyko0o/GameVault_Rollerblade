@@ -105,7 +105,7 @@ public class BayarPage extends javax.swing.JFrame {
         NumberFormat rupiah =
         NumberFormat.getNumberInstance(new Locale("id", "ID"));
 
-lblTotalBayar.setText("Total bayar Rp. " + rupiah.format(totalBayar));
+lblTotalBayar.setText("Rp. " + rupiah.format(totalBayar));
     }
 
 } catch (Exception e) {
@@ -129,6 +129,7 @@ lblTotalBayar.setText("Total bayar Rp. " + rupiah.format(totalBayar));
         btnKonfirmasi = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         lblTotalBayar = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -149,7 +150,12 @@ lblTotalBayar.setText("Total bayar Rp. " + rupiah.format(totalBayar));
         lblTotalBayar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTotalBayar.setForeground(new java.awt.Color(255, 255, 255));
         lblTotalBayar.setText("-");
-        getContentPane().add(lblTotalBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, -1, -1));
+        getContentPane().add(lblTotalBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 180, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("TOTAL BAYAR :");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BayarPage.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -332,6 +338,7 @@ String jamDB = jam.toString();
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnKonfirmasi;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblTotalBayar;
     // End of variables declaration//GEN-END:variables
