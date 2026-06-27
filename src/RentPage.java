@@ -157,9 +157,9 @@ public class RentPage extends javax.swing.JFrame {
         lblStatus4 = new javax.swing.JLabel();
         lblStatus3 = new javax.swing.JLabel();
         lblStatus2 = new javax.swing.JLabel();
-        lblStatus1 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
+        lblStatus1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -231,11 +231,11 @@ public class RentPage extends javax.swing.JFrame {
         getContentPane().add(lblStatus4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, -1, -1));
         getContentPane().add(lblStatus3, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 180, -1, -1));
         getContentPane().add(lblStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, -1, -1));
-        getContentPane().add(lblStatus1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, -1, -1));
         getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 160, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RentPage.jpeg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(lblStatus1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
