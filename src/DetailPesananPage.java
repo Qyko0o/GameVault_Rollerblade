@@ -54,28 +54,25 @@ public class DetailPesananPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnHome = new javax.swing.JButton();
         btnHistory = new javax.swing.JButton();
-        btnKonfrimasi = new javax.swing.JButton();
+        btnHome = new javax.swing.JButton();
         lblNama = new javax.swing.JLabel();
         lblEmail = new javax.swing.JLabel();
         lblNoTelepon = new javax.swing.JLabel();
         lblTanggal = new javax.swing.JLabel();
         lblJamSewa = new javax.swing.JLabel();
+        btnKonfrimasi = new javax.swing.JButton();
         lblDurasi = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnHome.addActionListener(this::btnHomeActionPerformed);
-        getContentPane().add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 470, 80, 70));
-
         btnHistory.addActionListener(this::btnHistoryActionPerformed);
         getContentPane().add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 470, 90, 70));
 
-        btnKonfrimasi.addActionListener(this::btnKonfrimasiActionPerformed);
-        getContentPane().add(btnKonfrimasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 377, 100, 30));
+        btnHome.addActionListener(this::btnHomeActionPerformed);
+        getContentPane().add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 470, 80, 70));
 
         lblNama.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNama.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,6 +98,9 @@ public class DetailPesananPage extends javax.swing.JFrame {
         lblJamSewa.setForeground(new java.awt.Color(255, 255, 255));
         lblJamSewa.setText("Jam Sewa");
         getContentPane().add(lblJamSewa, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, -1, 60));
+
+        btnKonfrimasi.addActionListener(this::btnKonfrimasiActionPerformed);
+        getContentPane().add(btnKonfrimasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, 100, 30));
 
         lblDurasi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDurasi.setForeground(new java.awt.Color(255, 255, 255));

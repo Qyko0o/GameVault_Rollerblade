@@ -197,7 +197,7 @@ public class RentPage extends javax.swing.JFrame {
 
         btnRoom2.setText("Room 2");
         btnRoom2.addActionListener(this::btnRoom2ActionPerformed);
-        getContentPane().add(btnRoom2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 150, 100, 50));
+        getContentPane().add(btnRoom2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, 90, 50));
 
         btnRoom3.setText("Room 3");
         btnRoom3.addActionListener(this::btnRoom3ActionPerformed);
@@ -209,7 +209,7 @@ public class RentPage extends javax.swing.JFrame {
 
         btnRoom5.setText("Room 5");
         btnRoom5.addActionListener(this::btnRoom5ActionPerformed);
-        getContentPane().add(btnRoom5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 220, 100, 50));
+        getContentPane().add(btnRoom5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 220, 110, 50));
 
         btnRoom6.setText("Room 6");
         btnRoom6.addActionListener(this::btnRoom6ActionPerformed);
@@ -227,29 +227,13 @@ public class RentPage extends javax.swing.JFrame {
         btnRoom9.addActionListener(this::btnRoom9ActionPerformed);
         getContentPane().add(btnRoom9, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 290, 100, 60));
         getContentPane().add(lblStatus9, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 320, 70, 30));
-
-        lblStatus8.setText("jLabel2");
         getContentPane().add(lblStatus8, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 330, -1, -1));
-
-        lblStatus7.setText("jLabel2");
         getContentPane().add(lblStatus7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, -1, -1));
-
-        lblStatus6.setText("jLabel2");
         getContentPane().add(lblStatus6, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 250, -1, -1));
-
-        lblStatus5.setText("jLabel3");
         getContentPane().add(lblStatus5, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 250, -1, -1));
-
-        lblStatus4.setText("jLabel4");
         getContentPane().add(lblStatus4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, -1, -1));
-
-        lblStatus3.setText("jLabel2");
         getContentPane().add(lblStatus3, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 180, -1, -1));
-
-        lblStatus2.setText("jLabel3");
         getContentPane().add(lblStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, -1, -1));
-
-        lblStatus1.setText("jLabel4");
         getContentPane().add(lblStatus1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RentPage.jpeg"))); // NOI18N

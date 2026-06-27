@@ -39,8 +39,8 @@ public class BayarPage extends javax.swing.JFrame {
 
         btnHome = new javax.swing.JButton();
         btnHistory = new javax.swing.JButton();
-        btnKonfirmasi = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnKonfirmasi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -50,11 +50,13 @@ public class BayarPage extends javax.swing.JFrame {
 
         btnHistory.addActionListener(this::btnHistoryActionPerformed);
         getContentPane().add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(622, 470, 80, 70));
-        getContentPane().add(btnKonfirmasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 100, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BayarPage.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, -1));
+
+        btnKonfirmasi.addActionListener(this::btnKonfirmasiActionPerformed);
+        getContentPane().add(btnKonfirmasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 100, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -72,6 +74,14 @@ public class BayarPage extends javax.swing.JFrame {
         new HomePage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnHomeActionPerformed
+
+    private void btnKonfirmasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKonfirmasiActionPerformed
+        // TODO add your handling code here:
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Pesanan akan segera diproses!", 
+            "Informasi", 
+            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnKonfirmasiActionPerformed
 
     /**
      * @param args the command line arguments
