@@ -273,13 +273,6 @@ public class RentPage extends javax.swing.JFrame {
         String durasi = cmbDurasi.getSelectedItem().toString();
         
         String tanggal = "";
-            if (jDateChooser1.getDate() != null) {
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd-MM-yyyy");
-                tanggal = sdf.format(jDateChooser1.getDate());
-            } else {
-                JOptionPane.showMessageDialog(this, "Silakan pilih tanggal terlebih dahulu!");
-                return;
-            }
             
             if (ruanganDipilih == null || ruanganDipilih.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Silakan pilih ruangan terlebih dahulu!");
