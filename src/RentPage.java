@@ -3,6 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.time.LocalTime;
+import javax.swing.JOptionPane;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 /**
  *
  * @author ASUS
@@ -15,6 +22,7 @@ public class RentPage extends javax.swing.JFrame {
     /**
      * Creates new form RentPage
      */
+    
     public RentPage() {
         initComponents();
         
@@ -86,8 +94,70 @@ public class RentPage extends javax.swing.JFrame {
         btnHistory.setContentAreaFilled(false);
         btnHistory.setBorderPainted(false);
         btnHistory.setFocusPainted(false);
-        btnHistory.setOpaque(false);
+        btnHistory.setOpaque(false);   
     }
+    
+    public boolean ruanganPenuh(int idRuangan,
+                                String tanggal,
+                                String jamMulai,
+                                String jamSelesai) {
+        boolean penuh = false;
+
+        try {
+            Connection conn = Koneksi.getConnection();
+
+            String sql =
+                "SELECT * FROM booking " +
+                "WHERE id_ruangan = ? " +
+                "AND tanggal_sewa = ? " +
+                "AND status_booking IN ('Disetujui','Menunggu Konfirmasi') " +
+                "AND (? < jam_selesai AND ? > jam_mulai)";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, idRuangan);
+            ps.setString(2, tanggal);
+            ps.setString(3, jamMulai);
+            ps.setString(4, jamSelesai);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                penuh = true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return penuh;
+    }
+     
+    private int getIdRuangan() {
+      switch (ruanganDipilih) {
+            case "Room 1":
+                return 1;
+            case "Room 2":
+                return 2;
+            case "Room 3":
+                return 3;
+            case "Room 4":
+                return 4;
+            case "Room 5":
+                return 5;
+            case "Room 6":
+                return 6;
+            case "Room 7":
+                return 7;
+            case "Room 8":
+                return 8;
+            case "Room 9":
+                return 9;
+            default:
+                return 0;
+        }
+    }
+
     
     private void pilihRuangan(String namaRuangan, javax.swing.JButton btn) {
         resetWarna();
@@ -95,33 +165,34 @@ public class RentPage extends javax.swing.JFrame {
         ruanganDipilih = namaRuangan;
 
         btn.setBackground(java.awt.Color.GREEN);
-        
+
         System.out.println("Dipilih : " + ruanganDipilih);
     }
    
-    private void resetWarna() {
-        btnRoom1.setBackground(java.awt.Color.WHITE);
-        btnRoom2.setBackground(java.awt.Color.WHITE);
-        btnRoom3.setBackground(java.awt.Color.WHITE);
-        btnRoom4.setBackground(java.awt.Color.WHITE);
-        btnRoom5.setBackground(java.awt.Color.WHITE);
-        btnRoom6.setBackground(java.awt.Color.WHITE);
-        btnRoom7.setBackground(java.awt.Color.WHITE);
-        btnRoom8.setBackground(java.awt.Color.WHITE);
-        btnRoom9.setBackground(java.awt.Color.WHITE);
-    }
+        private void resetWarna() {
+            btnRoom1.setBackground(java.awt.Color.WHITE);
+            btnRoom2.setBackground(java.awt.Color.WHITE);
+            btnRoom3.setBackground(java.awt.Color.WHITE);
+            btnRoom4.setBackground(java.awt.Color.WHITE);
+            btnRoom5.setBackground(java.awt.Color.WHITE);
+            btnRoom6.setBackground(java.awt.Color.WHITE);
+            btnRoom7.setBackground(java.awt.Color.WHITE);
+            btnRoom8.setBackground(java.awt.Color.WHITE);
+            btnRoom9.setBackground(java.awt.Color.WHITE);
+        }
 
-    private void resetLabel() {
-        lblStatus1.setText("");
-        lblStatus2.setText("");
-        lblStatus3.setText("");
-        lblStatus4.setText("");
-        lblStatus5.setText("");
-        lblStatus6.setText("");
-        lblStatus7.setText("");
-        lblStatus8.setText("");
-        lblStatus9.setText("");
-    }
+        private void resetLabel() {
+            lblStatus1.setText("");
+            lblStatus2.setText("");
+            lblStatus3.setText("");
+            lblStatus4.setText("");
+            lblStatus5.setText("");
+            lblStatus6.setText("");
+            lblStatus7.setText("");
+            lblStatus8.setText("");
+            lblStatus9.setText("");
+        }
+    
         /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -293,35 +364,90 @@ public class RentPage extends javax.swing.JFrame {
 
     private void btnPesanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesanActionPerformed
         // TODO add your handling code here:
-        String nama = txtNama.getText();
-        String email = txtEmail.getText();
-        String noTelepon = txtNoTelepon.getText();
-        String jamSewa = txtJamSewa.getText();
+        String nama = txtNama.getText().trim();
+        String email = txtEmail.getText().trim();
+        String noTelepon = txtNoTelepon.getText().trim();
+        String jamSewa = txtJamSewa.getText().trim();
         String durasi = cmbDurasi.getSelectedItem().toString();
-        
-        String tanggal = txtTanggal.getText().trim();
-            if (tanggal.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Silakan isi tanggal terlebih dahulu! (Contoh: 27-06-2026)");
-            return; 
-        }
-            
-            if (ruanganDipilih == null || ruanganDipilih.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Silakan pilih ruangan terlebih dahulu!");
-                return; 
-            }
+        String tanggalInput = txtTanggal.getText().trim();
 
-        DetailPesananPage detail = new DetailPesananPage(
-                nama,
-                email,
-                noTelepon,
-                tanggal,
-                jamSewa,
-                durasi,
-                ruanganDipilih
+        DateTimeFormatter input =
+        DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        DateTimeFormatter db =
+                DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        LocalDate tgl =
+                LocalDate.parse(tanggalInput, input);
+
+String tanggal = tgl.format(db);
+
+        // Validasi input
+        if (nama.isEmpty() || email.isEmpty() || noTelepon.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Data penyewa belum lengkap!");
+            return;
+        }
+
+        if (tanggal.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Silakan isi tanggal terlebih dahulu!");
+            return;
+        }
+
+        if (ruanganDipilih.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Silakan pilih ruangan terlebih dahulu!");
+            return;
+        }
+
+        // Ambil id ruangan
+        int idRuangan = getIdRuangan();
+
+        // Jam mulai
+        String jamMulai = jamSewa + ":00";
+
+        // Durasi
+        int durasiInt = Integer.parseInt(
+                durasi.replace(" Jam", "")
         );
-       
+
+        // Hitung jam selesai
+        LocalTime mulai = LocalTime.parse(jamMulai);
+        String jamSelesai =
+                mulai.plusHours(durasiInt).toString();
+
+        if (jamSelesai.length() == 5) {
+            jamSelesai += ":00";
+        }
+        
+
+        // Cek apakah ruangan sudah dibooking
+        if (ruanganPenuh(idRuangan,
+                tanggal,
+                jamMulai,
+                jamSelesai)) {
+
+            JOptionPane.showMessageDialog(this,
+                    "Ruangan sudah disewa pada jam tersebut!");
+            return;
+        }
+
+        // Pindah ke halaman detail
+        DetailPesananPage detail =
+                new DetailPesananPage(
+                        nama,
+                        email,
+                        noTelepon,
+                        tanggal,
+                        jamSewa,
+                        durasi,
+                        ruanganDipilih
+                );
+
         detail.setVisible(true);
         this.dispose();
+
     }//GEN-LAST:event_btnPesanActionPerformed
 
     private void cmbDurasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDurasiActionPerformed

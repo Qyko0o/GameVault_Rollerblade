@@ -31,6 +31,11 @@ public class HomePage extends javax.swing.JFrame {
         btnHistory.setBorderPainted(false);
         btnHistory.setFocusPainted(false);
         btnHistory.setOpaque(false);
+        
+        btnAdminPage.setContentAreaFilled(false);
+        btnAdminPage.setBorderPainted(false);
+        btnAdminPage.setFocusPainted(false);
+        btnAdminPage.setOpaque(false);
     }
 
     /**
@@ -60,9 +65,8 @@ public class HomePage extends javax.swing.JFrame {
         btnHistory.addActionListener(this::btnHistoryActionPerformed);
         getContentPane().add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 470, 90, 70));
 
-        btnAdminPage.setText("jButton1");
         btnAdminPage.addActionListener(this::btnAdminPageActionPerformed);
-        getContentPane().add(btnAdminPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        getContentPane().add(btnAdminPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, -1, 30));
 
         lblbw.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HomePage.jpeg"))); // NOI18N
         getContentPane().add(lblbw, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

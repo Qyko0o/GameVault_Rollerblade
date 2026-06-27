@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.text.NumberFormat;
+import java.util.Locale;
 /**
  *
  * @author ASUS
@@ -27,6 +29,7 @@ public class BayarPage extends javax.swing.JFrame {
     private String jamSewa;
     private String durasi;
     private String ruangan;
+    private int totalBayar;
 
     public BayarPage() {
         initComponents();
@@ -75,6 +78,40 @@ public class BayarPage extends javax.swing.JFrame {
         btnKonfirmasi.setBorderPainted(false);
         btnKonfirmasi.setFocusPainted(false);
         btnKonfirmasi.setOpaque(false);
+        
+        try {
+    Connection conn = Koneksi.getConnection();
+
+    String sql =
+            "SELECT harga_per_jam FROM ruangan WHERE nama_ruangan=?";
+
+    PreparedStatement ps =
+            conn.prepareStatement(sql);
+
+    ps.setString(1, ruangan);
+
+    ResultSet rs = ps.executeQuery();
+
+    if (rs.next()) {
+        int harga = rs.getInt("harga_per_jam");
+
+        int lama =
+                Integer.parseInt(
+                        durasi.replace(" Jam", "")
+                );
+
+        totalBayar = harga * lama;
+
+        NumberFormat rupiah =
+        NumberFormat.getNumberInstance(new Locale("id", "ID"));
+
+lblTotalBayar.setText("Total bayar Rp. " + rupiah.format(totalBayar));
+    }
+
+} catch (Exception e) {
+    e.printStackTrace();
+}
+        
     }
     
     
@@ -90,6 +127,8 @@ public class BayarPage extends javax.swing.JFrame {
         btnHome = new javax.swing.JButton();
         btnHistory = new javax.swing.JButton();
         btnKonfirmasi = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        lblTotalBayar = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -103,6 +142,14 @@ public class BayarPage extends javax.swing.JFrame {
 
         btnKonfirmasi.addActionListener(this::btnKonfirmasiActionPerformed);
         getContentPane().add(btnKonfirmasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 100, 20));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QrBayar.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, -1, -1));
+
+        lblTotalBayar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTotalBayar.setForeground(new java.awt.Color(255, 255, 255));
+        lblTotalBayar.setText("-");
+        getContentPane().add(lblTotalBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BayarPage.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -193,13 +240,7 @@ public class BayarPage extends javax.swing.JFrame {
                 conn.prepareStatement(sqlBooking,
                         PreparedStatement.RETURN_GENERATED_KEYS);
 
-        DateTimeFormatter inputTanggal =
-        DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
-LocalDate tgl =
-        LocalDate.parse(tanggal, inputTanggal);
-
-String tanggalDB = tgl.toString();
+        String tanggalDB = tanggal;
 
 LocalTime jam = LocalTime.parse(jamSewa);
 LocalTime jamSelesai = jam.plusHours(lama);
@@ -248,7 +289,7 @@ String jamDB = jam.toString();
                 "Pesanan berhasil dikirim!\n"
                 + "Silakan tunggu konfirmasi admin.");
 
-        new HistoryPage().setVisible(false);
+        new HistoryPage().setVisible(true);
         this.dispose();
 
     } catch (Exception e) {
@@ -291,5 +332,7 @@ String jamDB = jam.toString();
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnKonfirmasi;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblTotalBayar;
     // End of variables declaration//GEN-END:variables
 }

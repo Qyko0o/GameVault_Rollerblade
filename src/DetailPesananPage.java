@@ -24,20 +24,7 @@ public class DetailPesananPage extends javax.swing.JFrame {
     public DetailPesananPage() {
         initComponents();
         
-        btnHistory.setContentAreaFilled(false);
-        btnHistory.setBorderPainted(false);
-        btnHistory.setFocusPainted(false);
-        btnHistory.setOpaque(false);
-        
-        btnHome.setContentAreaFilled(false);
-        btnHome.setBorderPainted(false);
-        btnHome.setFocusPainted(false);
-        btnHome.setOpaque(false);
-        
-        btnKonfrimasi.setContentAreaFilled(false);
-        btnKonfrimasi.setBorderPainted(false);
-        btnKonfrimasi.setFocusPainted(false);
-        btnKonfrimasi.setOpaque(false);
+        setButtonTransparent();
     }
     
     public DetailPesananPage(String nama, String email,
@@ -61,8 +48,25 @@ public class DetailPesananPage extends javax.swing.JFrame {
         lblJamSewa.setText(jamSewa);
         lblDurasi.setText(durasi);
         lblRuangan.setText(ruanganDipilih);
+        setButtonTransparent();
     }
 
+    private void setButtonTransparent() {
+        btnHistory.setContentAreaFilled(false);
+        btnHistory.setBorderPainted(false);
+        btnHistory.setFocusPainted(false);
+        btnHistory.setOpaque(false);
+
+        btnHome.setContentAreaFilled(false);
+        btnHome.setBorderPainted(false);
+        btnHome.setFocusPainted(false);
+        btnHome.setOpaque(false);
+
+        btnKonfrimasi.setContentAreaFilled(false);
+        btnKonfrimasi.setBorderPainted(false);
+        btnKonfrimasi.setFocusPainted(false);
+        btnKonfrimasi.setOpaque(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -150,14 +154,14 @@ public class DetailPesananPage extends javax.swing.JFrame {
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
         System.out.println("Home diklik");
-        new HomePage().setVisible(false);
+        new HomePage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoryActionPerformed
         // TODO add your handling code here:
         System.out.println("History diklik");
-        new HistoryPage().setVisible(false);
+        new HistoryPage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnHistoryActionPerformed
 
@@ -172,7 +176,7 @@ public class DetailPesananPage extends javax.swing.JFrame {
             jamSewa,
             durasi,
             ruangan
-        ).setVisible(false);
+        ).setVisible(true);
 
     this.dispose();
     }//GEN-LAST:event_btnKonfrimasiActionPerformed
