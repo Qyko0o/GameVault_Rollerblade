@@ -157,7 +157,7 @@ public class RentPage extends javax.swing.JFrame {
         lblStatus4 = new javax.swing.JLabel();
         lblStatus3 = new javax.swing.JLabel();
         lblStatus2 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        txtTanggal = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         lblStatus1 = new javax.swing.JLabel();
 
@@ -178,7 +178,9 @@ public class RentPage extends javax.swing.JFrame {
 
         txtEmail.addActionListener(this::txtEmailActionPerformed);
         getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 160, -1));
-        getContentPane().add(txtNoTelepon, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 160, -1));
+
+        txtNoTelepon.addActionListener(this::txtNoTeleponActionPerformed);
+        getContentPane().add(txtNoTelepon, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 160, -1));
         getContentPane().add(txtJamSewa, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 160, -1));
 
         btnPesan.addActionListener(this::btnPesanActionPerformed);
@@ -231,7 +233,7 @@ public class RentPage extends javax.swing.JFrame {
         getContentPane().add(lblStatus4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, -1, -1));
         getContentPane().add(lblStatus3, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 180, -1, -1));
         getContentPane().add(lblStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, -1, -1));
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 160, -1));
+        getContentPane().add(txtTanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 160, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RentPage.jpeg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -274,14 +276,11 @@ public class RentPage extends javax.swing.JFrame {
         String jamSewa = txtJamSewa.getText();
         String durasi = cmbDurasi.getSelectedItem().toString();
         
-        String tanggal = "";
-            if (jDateChooser1.getDate() != null) {
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd-MM-yyyy");
-                tanggal = sdf.format(jDateChooser1.getDate());
-            } else {
-                JOptionPane.showMessageDialog(this, "Silakan pilih tanggal terlebih dahulu!");
-                return;
-            }
+        String tanggal = txtTanggal.getText().trim();
+            if (tanggal.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Silakan isi tanggal terlebih dahulu! (Contoh: 27-06-2026)");
+            return; 
+        }
             
             if (ruanganDipilih == null || ruanganDipilih.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Silakan pilih ruangan terlebih dahulu!");
@@ -377,6 +376,10 @@ public class RentPage extends javax.swing.JFrame {
         ruanganDipilih = "Room 9";
         lblStatus9.setText("✔");
     }//GEN-LAST:event_btnRoom9ActionPerformed
+
+    private void txtNoTeleponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoTeleponActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNoTeleponActionPerformed
                  
     /**
      * @param args the command line arguments
@@ -417,7 +420,6 @@ public class RentPage extends javax.swing.JFrame {
     private javax.swing.JButton btnRoom8;
     private javax.swing.JButton btnRoom9;
     private javax.swing.JComboBox<String> cmbDurasi;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblStatus1;
     private javax.swing.JLabel lblStatus2;
@@ -433,5 +435,6 @@ public class RentPage extends javax.swing.JFrame {
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtNama1;
     private javax.swing.JTextField txtNoTelepon;
+    private javax.swing.JTextField txtTanggal;
     // End of variables declaration//GEN-END:variables
 }
