@@ -140,7 +140,6 @@ public class RentPage extends javax.swing.JFrame {
         txtJamSewa = new javax.swing.JTextField();
         btnPesan = new javax.swing.JButton();
         cmbDurasi = new javax.swing.JComboBox<>();
-        txtTanggal = new javax.swing.JTextField();
         btnRoom1 = new javax.swing.JButton();
         btnRoom2 = new javax.swing.JButton();
         btnRoom3 = new javax.swing.JButton();
@@ -159,6 +158,7 @@ public class RentPage extends javax.swing.JFrame {
         lblStatus3 = new javax.swing.JLabel();
         lblStatus2 = new javax.swing.JLabel();
         lblStatus1 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -187,9 +187,6 @@ public class RentPage extends javax.swing.JFrame {
         cmbDurasi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 Jam", "2 Jam", "3 Jam", "4 Jam", "5 Jam", "6 Jam", "7 Jam", "8 Jam", "9 Jam", "10 Jam" }));
         cmbDurasi.addActionListener(this::cmbDurasiActionPerformed);
         getContentPane().add(cmbDurasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 160, -1));
-
-        txtTanggal.addActionListener(this::txtTanggalActionPerformed);
-        getContentPane().add(txtTanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 160, -1));
 
         btnRoom1.setText("Room 1");
         btnRoom1.addActionListener(this::btnRoom1ActionPerformed);
@@ -235,6 +232,7 @@ public class RentPage extends javax.swing.JFrame {
         getContentPane().add(lblStatus3, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 180, -1, -1));
         getContentPane().add(lblStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, -1, -1));
         getContentPane().add(lblStatus1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, -1, -1));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 160, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RentPage.jpeg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -273,9 +271,22 @@ public class RentPage extends javax.swing.JFrame {
         String nama = txtNama.getText();
         String email = txtEmail.getText();
         String noTelepon = txtNoTelepon.getText();
-        String tanggal = txtTanggal.getText();
         String jamSewa = txtJamSewa.getText();
         String durasi = cmbDurasi.getSelectedItem().toString();
+        
+        String tanggal = "";
+            if (jDateChooser1.getDate() != null) {
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd-MM-yyyy");
+                tanggal = sdf.format(jDateChooser1.getDate());
+            } else {
+                JOptionPane.showMessageDialog(this, "Silakan pilih tanggal terlebih dahulu!");
+                return;
+            }
+            
+            if (ruanganDipilih == null || ruanganDipilih.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Silakan pilih ruangan terlebih dahulu!");
+                return; 
+            }
 
         DetailPesananPage detail = new DetailPesananPage(
                 nama,
@@ -283,15 +294,10 @@ public class RentPage extends javax.swing.JFrame {
                 noTelepon,
                 tanggal,
                 jamSewa,
-                durasi
+                durasi,
+                ruanganDipilih
         );
-        
-        if (ruanganDipilih == null || ruanganDipilih.isEmpty()) {
-            JOptionPane.showMessageDialog(this,
-                    "Silakan pilih ruangan terlebih dahulu!");
-            return;
-        }
-
+       
         detail.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPesanActionPerformed
@@ -299,10 +305,6 @@ public class RentPage extends javax.swing.JFrame {
     private void cmbDurasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDurasiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbDurasiActionPerformed
-
-    private void txtTanggalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTanggalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTanggalActionPerformed
 
     private void btnRoom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRoom1ActionPerformed
         // TODO add your handling code here:
@@ -415,6 +417,7 @@ public class RentPage extends javax.swing.JFrame {
     private javax.swing.JButton btnRoom8;
     private javax.swing.JButton btnRoom9;
     private javax.swing.JComboBox<String> cmbDurasi;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblStatus1;
     private javax.swing.JLabel lblStatus2;
@@ -430,6 +433,5 @@ public class RentPage extends javax.swing.JFrame {
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtNama1;
     private javax.swing.JTextField txtNoTelepon;
-    private javax.swing.JTextField txtTanggal;
     // End of variables declaration//GEN-END:variables
 }

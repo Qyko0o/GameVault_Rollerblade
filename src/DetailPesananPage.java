@@ -34,7 +34,7 @@ public class DetailPesananPage extends javax.swing.JFrame {
     
     public DetailPesananPage(String nama, String email,
                          String noTelepon, String tanggal,
-                         String jamSewa, String durasi) {
+                         String jamSewa, String durasi, String ruanganDipilih) {
         initComponents();
 
         lblNama.setText(nama);
@@ -43,6 +43,7 @@ public class DetailPesananPage extends javax.swing.JFrame {
         lblTanggal.setText(tanggal);
         lblJamSewa.setText(jamSewa);
         lblDurasi.setText(durasi);
+        lblRuangan.setText(ruanganDipilih);
     }
 
     /**
@@ -54,25 +55,23 @@ public class DetailPesananPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnHistory = new javax.swing.JButton();
-        btnHome = new javax.swing.JButton();
         lblNama = new javax.swing.JLabel();
         lblEmail = new javax.swing.JLabel();
         lblNoTelepon = new javax.swing.JLabel();
-        lblTanggal = new javax.swing.JLabel();
         lblJamSewa = new javax.swing.JLabel();
-        btnKonfrimasi = new javax.swing.JButton();
         lblDurasi = new javax.swing.JLabel();
+        lblTanggal = new javax.swing.JLabel();
+        lblRuangan = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        btnHistory = new javax.swing.JButton();
+        btnHome = new javax.swing.JButton();
+        btnKonfrimasi = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnHistory.addActionListener(this::btnHistoryActionPerformed);
-        getContentPane().add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 470, 90, 70));
-
-        btnHome.addActionListener(this::btnHomeActionPerformed);
-        getContentPane().add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 470, 80, 70));
 
         lblNama.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNama.setForeground(new java.awt.Color(255, 255, 255));
@@ -89,26 +88,44 @@ public class DetailPesananPage extends javax.swing.JFrame {
         lblNoTelepon.setText("No Telp");
         getContentPane().add(lblNoTelepon, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, -1, 60));
 
-        lblTanggal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblTanggal.setForeground(new java.awt.Color(255, 255, 255));
-        lblTanggal.setText("Tanggal");
-        getContentPane().add(lblTanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, -1, 30));
-
         lblJamSewa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblJamSewa.setForeground(new java.awt.Color(255, 255, 255));
         lblJamSewa.setText("Jam Sewa");
-        getContentPane().add(lblJamSewa, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, -1, 60));
-
-        btnKonfrimasi.addActionListener(this::btnKonfrimasiActionPerformed);
-        getContentPane().add(btnKonfrimasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, 100, 30));
+        getContentPane().add(lblJamSewa, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, -1, 20));
 
         lblDurasi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDurasi.setForeground(new java.awt.Color(255, 255, 255));
         lblDurasi.setText("jLabel2");
         getContentPane().add(lblDurasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 310, -1, -1));
 
+        lblTanggal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTanggal.setForeground(new java.awt.Color(255, 255, 255));
+        lblTanggal.setText("jLabel2");
+        getContentPane().add(lblTanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, 130, 30));
+
+        lblRuangan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblRuangan.setForeground(new java.awt.Color(255, 255, 255));
+        lblRuangan.setText("jLabel5");
+        getContentPane().add(lblRuangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, 30));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DetailPesananPage.jpeg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 540));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 540));
+
+        btnHistory.addActionListener(this::btnHistoryActionPerformed);
+        getContentPane().add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 470, 90, 70));
+
+        btnHome.addActionListener(this::btnHomeActionPerformed);
+        getContentPane().add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 470, 80, 70));
+
+        btnKonfrimasi.addActionListener(this::btnKonfrimasiActionPerformed);
+        getContentPane().add(btnKonfrimasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, 100, 30));
+
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, -1));
+
+        jLabel3.setText("jLabel3");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 330, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 310, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -163,11 +180,15 @@ public class DetailPesananPage extends javax.swing.JFrame {
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnKonfrimasi;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lblDurasi;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblJamSewa;
     private javax.swing.JLabel lblNama;
     private javax.swing.JLabel lblNoTelepon;
+    private javax.swing.JLabel lblRuangan;
     private javax.swing.JLabel lblTanggal;
     // End of variables declaration//GEN-END:variables
 }
