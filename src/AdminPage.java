@@ -169,17 +169,17 @@ public class AdminPage extends javax.swing.JFrame {
             pstBayar.executeUpdate();
             
             String sqlRoom =
-        "UPDATE ruangan r " +
-        "JOIN booking b " +
-        "ON r.id_ruangan = b.id_ruangan " +
-        "SET r.status='Disewa' " +
-        "WHERE b.id_booking=?";
+            "UPDATE ruangan r " +
+            "JOIN booking b " +
+            "ON r.id_ruangan = b.id_ruangan " +
+            "SET r.status='Disewa' " +
+            "WHERE b.id_booking=?";
 
-PreparedStatement pstRoom =
-        conn.prepareStatement(sqlRoom);
+            PreparedStatement pstRoom =
+            conn.prepareStatement(sqlRoom);
 
-pstRoom.setInt(1, idBooking);
-pstRoom.executeUpdate();
+            pstRoom.setInt(1, idBooking);
+            pstRoom.executeUpdate();
 
             JOptionPane.showMessageDialog(this,
                     "Pesanan disetujui!");
@@ -220,15 +220,15 @@ pstRoom.executeUpdate();
             pst.setInt(1, idBooking);
             pst.executeUpdate();
             String sqlBayar =
-        "UPDATE pembayaran "
-        + "SET status_pembayaran='Ditolak' "
-        + "WHERE id_booking=?";
+            "UPDATE pembayaran "
+            + "SET status_pembayaran='Ditolak' "
+            + "WHERE id_booking=?";
 
-PreparedStatement pstBayar =
-        conn.prepareStatement(sqlBayar);
+            PreparedStatement pstBayar =
+            conn.prepareStatement(sqlBayar);
 
-pstBayar.setInt(1, idBooking);
-pstBayar.executeUpdate();
+            pstBayar.setInt(1, idBooking);
+            pstBayar.executeUpdate();
 
             JOptionPane.showMessageDialog(this,
                     "Pesanan ditolak!");

@@ -80,37 +80,35 @@ public class BayarPage extends javax.swing.JFrame {
         btnKonfirmasi.setOpaque(false);
         
         try {
-    Connection conn = Koneksi.getConnection();
+            Connection conn = Koneksi.getConnection();
 
-    String sql =
-            "SELECT harga_per_jam FROM ruangan WHERE nama_ruangan=?";
+            String sql =
+                    "SELECT harga_per_jam FROM ruangan WHERE nama_ruangan=?";
 
-    PreparedStatement ps =
-            conn.prepareStatement(sql);
+            PreparedStatement ps =
+                    conn.prepareStatement(sql);
 
-    ps.setString(1, ruangan);
+            ps.setString(1, ruangan);
 
-    ResultSet rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
-    if (rs.next()) {
-        int harga = rs.getInt("harga_per_jam");
+            if (rs.next()) {
+                int harga = rs.getInt("harga_per_jam");
 
-        int lama =
-                Integer.parseInt(
-                        durasi.replace(" Jam", "")
-                );
+                int lama = Integer.parseInt(durasi.replace(" Jam", "")
+                        );
 
-        totalBayar = harga * lama;
+                totalBayar = harga * lama;
 
-        NumberFormat rupiah =
-        NumberFormat.getNumberInstance(new Locale("id", "ID"));
+                NumberFormat rupiah =
+                NumberFormat.getNumberInstance(new Locale("id", "ID"));
 
-lblTotalBayar.setText("Rp. " + rupiah.format(totalBayar));
-    }
+                lblTotalBayar.setText("Rp. " + rupiah.format(totalBayar));
+            }
 
-} catch (Exception e) {
-    e.printStackTrace();
-}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         
     }
     
