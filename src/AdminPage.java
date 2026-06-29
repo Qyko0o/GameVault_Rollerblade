@@ -133,8 +133,8 @@ public class AdminPage extends javax.swing.JFrame {
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         // TODO add your handling code here:
         int baris = tblAdmin.getSelectedRow();
-
-        if (baris == -1) {
+        BaseTransaksi test = newTransaksiVIP("GV-123", "MEMBER-01");
+       if (baris == -1) {
             JOptionPane.showMessageDialog(this,
                     "Pilih data terlebih dahulu!");
             return;
